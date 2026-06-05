@@ -16,25 +16,35 @@ Overview:
   
   For the membraneworkup, cellworkup, and patchworkup scripts, several values are left to the user’s discretion, e.g., the threshold for masking the cell, the close kernel for said mask, and the erosion value for locating and centering the cell membrane. These values are chosen iteratively by the user, with pause points automated to allow for mask visualization and subsequent value edits. Recommended values are included in the script; depending on the homogeneity of the user's data, these values can be hard coded. 
 
+
 System requirements: 
   Hardware: a standard desktop or laptop computer. Higher RAM improves runtime, particularly of the membraneworkup.py script. 
   Software: This package has been tested on macOS: Sonoma 14.6.1 running Python 3.12.5. It depends primarily on python stacks: csv, numpy, scipy, imageio, PIL, skimage, and circle_fit. Specific required stacks are listed at the top of each script.
+
 
 Installation guide (minutes, depending on how many of the requisite python stacks you already have installed): 
   1. Download desired script and associated demo folder.
   2. Confirm that the demo folder comprises the subfolders described above, with three .tifs in the tifs subfolder.
   3. Access your desired enviroment in Terminal. To create a new conda environment for the management of dependencies:
-        conda create --name
-        conda activate name
-        conda install pip
-  4. Confirm that all packages described in lines 1–34 of the downloaded script are installed in your environment. If one or more are not:
-        pip install numpy pandas scipy imageio #[... et al]
+
+       conda create --name
+
+       conda activate name
+
+       conda install pip
+  5. Confirm that all packages described in lines 1–34 of the downloaded script are installed in your environment. If one or more are not:
+
+       pip install numpy pandas scipy imageio #[... et al]
+     
   7. Load and run the script in Terminal, e.g.:
-        cd .../
-        python membraneworkup.py
-  8. Follow instructions as they appear.
-  9. Check the results folder for output files. These are: a results file, with all parameters calculated by the script (see the Script Outputs.xlsx for specifics); several folders of masked images labelled according to .tif name and image category. These folders and their contents are explicitly described in the annotations/comments within each script.
-  10. Modify the script as desired.
+
+       cd .../
+
+       python membraneworkup.py
+     
+  9. Follow instructions as they appear.
+  10. Check the results folder for output files. These are: a results file, with all parameters calculated by the script (see the Script Outputs.xlsx for specifics); several folders of masked images labelled according to .tif name and image category. These folders and their contents are explicitly described in the annotations/comments within each script.
+  11. Modify the script as desired.
      In all scripts, certain parameters have been hard coded and others left to user discretion. Code has been commented out next to all hard coded parameters; re-insertion will enable greater user control. Conversely, for homogenous data, all user input parameters can be changed to integers to reduce user interaction and improve run time.
      Similarly, several methods to identify the plasma membrane are provided in the membraneworkup script, all of which have been commented out except for the one applied to the Tension TRAAKer construct screen. The pros and cons of these methods are described in the script annotations; sub in/out according to your data workup needs.
 
