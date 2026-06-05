@@ -1,7 +1,9 @@
 Tension-TRAAKer
 
 Overview: 
+  
   This folder includes scripts to mask membranes (channel 2 when 2 or more channels exist) and calculate fluorescence changes in   those membranes (as channel 1/channel 2 when 2 or more channels exist). Scripts are heavily annotated; outputs are summarized in the Script Outputs.xlsx.
+  
   Briefly: 
 
   membraneworkup.py can be used to mask a cell and serially crop it to the outermost plasma membrane. The mask is built from data in channel 2 of a 2 channel tif; fluorescence is reported for both channels within this mask. This script outputs total fluorescence for the cell mask, the membrane mask, the membrane, and the thresholded membrane of a cell. This script iterates across all tifs in an input folder with subfolders tifs, pngs, and results. Each tif file should include a fluorescent cell or patch of cells with bright plasma membrane(s) and minimal external debris.
