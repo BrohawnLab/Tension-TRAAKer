@@ -1,5 +1,6 @@
 Tension-TRAAKer
 
+
 Overview: 
   
   This folder includes scripts to mask membranes (channel 2 when 2 or more channels exist) and calculate fluorescence changes in   those membranes (as channel 1/channel 2 when 2 or more channels exist). Scripts are heavily annotated; outputs are summarized in the Script Outputs.xlsx.
@@ -45,8 +46,11 @@ Installation guide (minutes, depending on how many of the requisite python stack
   9. Follow instructions as they appear.
   10. Check the results folder for output files. These are: a results file, with all parameters calculated by the script (see the Script Outputs.xlsx for specifics); several folders of masked images labelled according to .tif name and image category. These folders and their contents are explicitly described in the annotations/comments within each script.
   11. Modify the script as desired.
-     In all scripts, certain parameters have been hard coded and others left to user discretion. Code has been commented out next to all hard coded parameters; re-insertion will enable greater user control. Conversely, for homogenous data, all user input parameters can be changed to integers to reduce user interaction and improve run time.
-     Similarly, several methods to identify the plasma membrane are provided in the membraneworkup script, all of which have been commented out except for the one applied to the Tension TRAAKer construct screen. The pros and cons of these methods are described in the script annotations; sub in/out according to your data workup needs.
+
+  In all scripts, certain parameters have been hard coded and others left to user discretion. Code has been commented out next to all hard coded parameters; re-insertion will enable greater user control. Conversely, for homogenous data, all user input parameters can be changed to integers to reduce user interaction and improve run time.
+  
+  Similarly, several methods to identify the plasma membrane are provided in the membraneworkup script, all of which have been commented out except for the one applied to the Tension TRAAKer construct screen. The pros and cons of these methods are described in the script annotations; sub in/out according to your data workup needs.
+
 
 License: GNU General Public License v3.0
 
