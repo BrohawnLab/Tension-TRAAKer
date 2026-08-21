@@ -14,6 +14,10 @@ Overview:
   patchworkup.py can be used to mask excised cell patches (single channel tifs) according to membrane brightness. Within the masked membrane, the membrane midpoint is determined for each of n brightest rows and fit to a circle (https://pypi.org/project/circle-fit/) to determine the radius of curvature of the patch. Total fluorescence is also reported for each masked membrane. This script iterates across all tifs in an input folder with subfolders tifs and results. Each tif file should include a fluorescent patch of membrane that has been oriented vertically with no visible debris (i.e., the membrane extends from the top of the image to the bottom). The script is agnostic to the direction of membrane curvature. 
 
   pokeworkup.py can be used to mask cell membranes in cropped cells according to the data in channel 2 of a 3 channel tif; fluorescence is reported for channels 1 and 2 within this mask. This script outputs both total fluorescence for the cell membrane, and channel 1/channel 2 fluorescence for each row of the cell membrane. The latter data can be used to build a spatially precise kymograph describing membrane fluorescence change through time. This script iterates across all tifs in an input folder with subfolders tifs and results. Each tif file should include a fluorescent patch of membrane that has been oriented vertically with no visible debris (i.e., the membrane extends from the top of the image to the bottom). 
+
+  pullworkup.py can be used to mask cell membranes + calculate radii of curvature in cropped cells according to the data in channel 2 of a 3 channel tif; fluorescence is reported for channels 1 and 2 within this mask. This script outputs total fluorescence for the cell membrane, as well as isolated channel 1 and 2 membrane masks (pngs), and channel 1/channel 2 fluorescence for each row of the cell membrane (pngs). The latter data can be used to build a spatially precise kymograph describing membrane fluorescence change through time. Within the masked membrane, the membrane midpoint is determined for each of n leftmost (or brightest, if desired--see comments in script) rows and fit to a circle (https://pypi.org/project/circle-fit/) to determine the radius of curvature of the patch. This script iterates across all tifs in an input folder with subfolders tifs and results. Each tif file should include a fluorescent patch of membrane that has been oriented vertically with minimal visible debris to the left of the membrane (i.e., the membrane extends from the top of the image to the bottom, with the extracellular side on the left and intracellular on the right).
+
+  boltzmann_consensus.py can be used to average the boltzmann sigmoidal fit parameters of many separate curves and plot a new mean+/-sem or mean+/-95%CI curve. This script was made by SGB/Claude; instructions and example data appear in the comments at the top of the script.
   
   For the membraneworkup, cellworkup, and patchworkup scripts, several values are left to the user’s discretion, e.g., the threshold for masking the cell, the close kernel for said mask, and the erosion value for locating and centering the cell membrane. These values are chosen iteratively by the user, with pause points automated to allow for mask visualization and subsequent value edits. Recommended values are included in the script; depending on the homogeneity of the user's data, these values can be hard coded. 
 
@@ -33,19 +37,21 @@ Installation guide (minutes, depending on how many of the requisite python stack
        conda activate name
 
        conda install pip
-  5. Confirm that all packages described in lines 1–34 of the downloaded script are installed in your environment. If one or more are not:
+  4. Confirm that all packages described in lines 1–34 of the downloaded script are installed in your environment. If one or more are not:
 
        pip install numpy pandas scipy imageio #[... et al]
      
-  7. Load and run the script in Terminal, e.g.:
+  5. Load and run the script in Terminal, e.g.:
 
        cd .../
 
        python membraneworkup.py
      
-  9. Follow instructions as they appear.
-  10. Check the results folder for output files. These are: a results file, with all parameters calculated by the script (see the Script Outputs.xlsx for specifics); several folders of masked images labelled according to .tif name and image category. These folders and their contents are explicitly described in the annotations/comments within each script.
-  11. Modify the script as desired.
+  6. Follow instructions as they appear.
+    
+  7. Check the results folder for output files. These are: a results file, with all parameters calculated by the script (see the Script Outputs.xlsx for specifics); several folders of masked images labelled according to .tif name and image category. These folders and their contents are explicitly described in the annotations/comments within each script.
+ 
+  8. Modify the script as desired.
 
   In all scripts, certain parameters have been hard coded and others left to user discretion. Code has been commented out next to all hard coded parameters; re-insertion will enable greater user control. Conversely, for homogenous data, all user input parameters can be changed to integers to reduce user interaction and improve run time.
   
