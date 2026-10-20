@@ -217,8 +217,8 @@ for filename in os.listdir(dir_path):
 
 				CoordR.append([int(row_index),int(middle_col)])		#This is the coordinate of the midpoint of each row of n brightest adjacent pixels.
 				Row_List.append(row_index)
-				Green_List.append(int(highest_average))				#This is a list of the average green (channel 2) value of each row of n brightest adjacent pixels.
-				Red_List.append(int(highest_averagered))			#This is a list of the average red (channel 1) value of the same pixels.
+				Green_List.append(int(highest_average))				#This is a list of the average green (channel 2) value of each row of n brightest adjacent pixels. Float this if you don't want it to round here.
+				Red_List.append(int(highest_averagered))			#This is a list of the average red (channel 1) value of the same pixels. Float this if you don't want it to round here.
 				Col_List.append([first_col, row_index])		    	#This is the first (leftmost) pixel in each row of n brightest adjacent pixels. Sub first_col for highest_average if you want to choose radii workup points by brightness. Change False to True in line 232.
 
 			#Fill lists describing your masked membrane (comprising the n brightest adjacent pixels in each row, chosen from the green channel (2)).
