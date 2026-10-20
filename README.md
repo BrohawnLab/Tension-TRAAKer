@@ -3,13 +3,15 @@ Tension-TRAAKer
 
 Overview: 
   
-  This folder includes scripts to mask membranes (channel 2 when 2 or more channels exist) and calculate fluorescence changes in   those membranes (as channel 1/channel 2 when 2 or more channels exist). Scripts are heavily annotated; outputs are summarized in the Script Outputs.xlsx.
+  This folder includes scripts to mask membranes (channel 2 when 2 or more channels exist) and calculate fluorescence changes in those membranes (as channel 1/channel 2 when 2 or more channels exist). Scripts are heavily annotated; outputs are summarized in the Script Outputs.xlsx.
   
   Briefly: 
 
-  membraneworkup.py can be used to mask a cell and serially crop it to the outermost plasma membrane. The mask is built from data in channel 2 of a 2 channel tif; fluorescence is reported for both channels within this mask. This script outputs total fluorescence for the cell mask, the membrane mask, the membrane, and the thresholded membrane of a cell. This script iterates across all tifs in an input folder with subfolders tifs, pngs, and results. Each tif file should include a fluorescent cell or patch of cells with bright plasma membrane(s) and minimal external debris.
+  membraneworkup.py can be used to mask a cell and serially crop it to the outermost plasma membrane. The mask is built from data in channel 2 of a 2 channel tif; fluorescence is reported for both channels within this mask. This script outputs total fluorescence for the cell mask, the membrane mask, the membrane, and the thresholded membrane of a cell. This script iterates across all tifs in an input folder with subfolders tifs, pngs, and results. Each tif file should include a fluorescent cell or patch of cells with bright plasma membrane(s) and minimal external debris. A variety of options for data processing are both left available in the script and commented out; these correspond to different data workup methods considered by the authors.
 
-  cellworkup.py is a truncated version of membraneworkup.py, and can be used to mask a cell using data in channel 2 of a 2 channel tif; fluorescence is then reported for both channels within this mask. This script iterates across all tifs in an input folder with subfolders tifs, pngs, and results. Each tif file should include a fluorescent cell or patch of cells with bright plasma membrane(s) and minimal external debris.
+  cellworkup.py is a truncated version of membraneworkup.py, and can be used to mask a cell using data in channel 2 of a 2 channel tif; fluorescence is then reported for both channels within this mask. This script iterates across all tifs in an input folder with subfolders tifs, pngs, and results. Each tif file should include a fluorescent cell or patch of cells with bright plasma membrane(s) and minimal external debris. cellworkup.py applies a threshold to the cell mask after it is chosen. 
+
+  dyeworkup.py is a similar truncation of membraneworkup.py, but does not apply a threshold to the cell mask; it can be run on either the cell or membrane demo folders.
 
   patchworkup.py can be used to mask excised cell patches (single channel tifs) according to membrane brightness. Within the masked membrane, the membrane midpoint is determined for each of n brightest rows and fit to a circle (https://pypi.org/project/circle-fit/) to determine the radius of curvature of the patch. Total fluorescence is also reported for each masked membrane. This script iterates across all tifs in an input folder with subfolders tifs and results. Each tif file should include a fluorescent patch of membrane that has been oriented vertically with no visible debris (i.e., the membrane extends from the top of the image to the bottom). The script is agnostic to the direction of membrane curvature. 
 
@@ -19,7 +21,7 @@ Overview:
 
   boltzmann_consensus.py can be used to average the boltzmann sigmoidal fit parameters of many separate curves and plot a new mean+/-sem or mean+/-95%CI curve. This script was made by SGB/Claude; instructions and example data appear in the comments at the top of the script.
   
-  For the membraneworkup, cellworkup, and patchworkup scripts, several values are left to the user’s discretion, e.g., the threshold for masking the cell, the close kernel for said mask, and the erosion value for locating and centering the cell membrane. These values are chosen iteratively by the user, with pause points automated to allow for mask visualization and subsequent value edits. Recommended values are included in the script; depending on the homogeneity of the user's data, these values can be hard coded. 
+  For the membraneworkup, cellworkup, and patchworkup scripts, several values are left to the user’s discretion, e.g., the threshold for masking the cell, the close kernel for said mask, and the erosion value for locating and centering the cell membrane. These values are chosen iteratively by the user, with pause points automated to allow for mask visualization and subsequent value edits. Recommended values are included in the script; depending on the homogeneity of the user's data, these values can be hard coded. If they are, be sure to also alter the starting blur function as described.
 
 
 System requirements: 
