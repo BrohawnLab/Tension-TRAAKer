@@ -108,7 +108,7 @@ for filename in os.listdir(png_path):
 			input_thresh = int(input("\n\nWhat is the threshold for your binary mask? Type a value from 1 to 255. 10-30 recommended for single cells, 2-20 recommended for multiple: "))
 			
 			#Blur out pixels to avoid membrane gaps. Convert to binary mask.
-			blurred_test = cv2.blur(img_g/64, (blur_kernel,blur_kernel)).astype(np.uint8)			#img_g/64 is here for visualization purposes (so you can see how well even a dim cell is being masked in the pop up). Note that this will supersaturate your image (for masking purposes only).		
+			blurred_test = cv2.blur(img_g/64, (blur_kernel,blur_kernel)).astype(np.uint8)			#img_g/64 is here for visualization purposes (so you can see how well even a dim cell is being masked in the pop up). The blur/close kernels compensate for wrapping if it occurs. Change to np.clip to skip close.  	
 			ret, binary_test = cv2.threshold(blurred_test, input_thresh, 255, cv2.THRESH_BINARY)
 			cv2.imshow("Binary", binary_test)
 			cv2.waitKey(1000)
@@ -178,7 +178,7 @@ for filename in os.listdir(png_path):
 
 		#Mask membrane.
 			#Blur out pixels to avoid membrane gaps.
-			blurred_green = cv2.blur(img/64, (blur_kernel,blur_kernel)).astype(np.uint8)	
+			blurred_green = cv2.blur(img/64, (blur_kernel,blur_kernel)).astype(np.uint8)	#img_g/64 same as above. Change to np.clip to skip close. 
 
 			#Convert image to binary mask.
 			ret, binary_green = cv2.threshold(blurred_green, input_thresh, 255, cv2.THRESH_BINARY)
